@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Input } from "@angular/core";
 
 @Component({
     selector: 'ap-photo',
@@ -6,6 +6,6 @@ import { Component } from "@angular/core";
 })
 
 export class PhotoComponent{
-    description = "Kratos e Atreus no fundo branco";
-    url = "https://gmedia.playstation.com/is/image/SIEPDC/god-of-war-hub-hero-banner-featured-01-en-09jul21?$native--t$";
+   @Input() description = ""
+   @Input() url = "";
 }
