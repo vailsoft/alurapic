@@ -122,7 +122,7 @@ No caso estamos mandando os parâmetros do template para as variáveis receberem
 
 
 <pre>import { Component, Input } from "@angular/core"; </pre>
-
+</ul>
 <h2>Organizando nosso código em módulos</h2>
 
 <p>Dentro de App vamos criar a pasta photos e jogar a pasta photo lá dentro
@@ -212,5 +212,69 @@ Dentro do <em>app.component.html</em>, vamos deixar somente um &lt;ap-photo&gt; 
     [description]="photo.description"&gt;
 &lt;/ap-photo&gt
 </pre>
+
+<h2>Integrando a nossa aplicação com uma API</h2>
+<ul>
+    <li>Primeiramente baixamos o <a href="https://s3.amazonaws.com/caelum-online-public/865-angular/api.zip">arquivo.zip</a> que vamos utilizar pra fazer o procedimento.
+
+    <li>Extraimos o arquivo de modo que a pasta <em>api</em> não tenha outra pasta api dentro.</li>
+
+    <li>Vamos no arquivo <em>package.json</em> e deletamos a dependência <em>sqlite</em>.</li>
+
+    <li>Acessamos a pasta via terminal e rodamos o comando <pre>npm install</pre> para instalar as dependências necessárias para prosseguir.</li>
+
+    <li>Ao terminar rodamos o comando <pre>npm install sqlite3</pre> para instalar a versão mais recente.</li>
+
+    <li>Ao fazer os procedimentos descritos acima poderá acessar rodar o comando <pre>npm start</pre> para iniciar a API. A mesma poderá ser acessada pelo endereço: <a href="http://localhost:3000/flavio/photos">http://localhost:3000/flavio/photos</a> no navegador.</li>
+    </ul>
+
+<h2>Http Client e Injeção de dependências</h2>
+
+<li>Vamos no arquivo <em>app.component.ts</em> e deixamos o array de photos vazio assim:
+<pre>photos = [];</pre>
+
+<li>Vamos no arquivo app.module.ts e inserimos HttpClientModule nos imports e o mesmo será importado de: <pre>import { HttpClientModule } from '@angular/common/http';</pre></li>
+
+</li>
+
+<li>No <em>app.component.ts</em> dentro da classe vamos criar um <em>constructor</em> que vai utilizar um parâmetro do tipo HttpClient no caso:
+
+<pre>constructor(http: HttpClient){
+
+}</pre>
+
+
+
+<p style="color: #ffff00">Obs: Em Typescript o tipo é definido utilizando "nomeVariavel: Tipo"</p>
+o mesmo deverá ser inserido nos imports: 
+
+<pre>import { HttpClient } from '@angular/common/http';</pre>
+
+o arquivo app.component.ts deverá ficar assim:
+
+<pre>import { HttpClient } from '@angular/common/http';
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+})
+
+export class AppComponent {
+    photos = [];
+    constructor(http: HttpClient){
+        console.log(http);
+    }
+}
+</pre>
+
+
+</li>
+
+<li>Para realizar um teste sem mostrar erros vamos comentar todo o &lt;ap-photo&gt; dentro de <em>app.component.html e colocamos um <em>console.log</em> dentro do construtor para verificar se a dependência foi injetada. Se no console mostrar o HttpClient sem erros então a dependencia foi injetada com sucesso.</li>
+
+<li>Apagamos o console.log de dentro do constructor</li>
+
 
 
