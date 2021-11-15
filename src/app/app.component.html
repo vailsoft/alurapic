@@ -1,6 +1,5 @@
-<ap-photo url="../assets/images/kratos.jpg" description="Kratos"></ap-photo>
-
-<ap-photo url="../assets/images/atreus.jpg" description="Atreus"></ap-photo>
-
-
-
+<ap-photo 
+    *ngFor="let photo of photos" 
+    [url]="photo.url" 
+    [description]="photo.description">
+</ap-photo>
