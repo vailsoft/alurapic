@@ -1,5 +1,9 @@
-<ap-photo 
+<!-- <ap-photo 
     *ngFor="photo of photos" 
     [url]="photo.url" 
     [description]="photo.description">
-</ap-photo> 
+</ap-photo>  -->
+
+<div *ngFor="let i of photos">
+    <img [attr.src]="i.url" class="img-thumbnail"> 
+ </div>

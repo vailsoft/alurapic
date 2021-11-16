@@ -1,5 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { PhotoService } from './services/photo.service';
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,27 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
 
-  photos: Object[] = [];
 
-  constructor(http: HttpClient){
-    http
-    .get<Object[]>('http://localhost:3000/flavio/photos')
-    .subscribe(photos => this.photos = photos);
-  }   
+export class AppComponent implements OnInit {
+  photos: any;
+  erro: any;
+  user: string = 'flavio';
+
+  constructor(private photoService: PhotoService){
+    this.getter();
+  }
+
+  ngOnInit(){}
+  
+  public getter(){
+    this.photoService.listFromUser(this.user).subscribe(
+      (data: any): void => {
+        this.photos = data;
+      }, (error: any) =>{
+        this.erro = error;
+        console.log(this.erro)
+    });
+  }
+
 }
