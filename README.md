@@ -215,7 +215,7 @@ Dentro do <em>app.component.html</em>, vamos deixar somente um &lt;ap-photo&gt; 
 
 <h2>Integrando a nossa aplicação com uma API</h2>
 <ul>
-    <li>Primeiramente baixamos o <a href="https://s3.amazonaws.com/caelum-online-public/865-angular/api.zip">arquivo.zip</a> que vamos utilizar pra fazer o procedimento.
+    <li>Primeiramente baixamos o <a href="https://s3.amazonaws.com/caelum-online-public/865-angular/api.zip">arquivo.zip</a> que vamos utilizar pra fazer o procedimento.</li>
 
     <li>Extraimos o arquivo de modo que a pasta <em>api</em> não tenha outra pasta api dentro.</li>
 
