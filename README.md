@@ -183,7 +183,7 @@ Em <em>app.module.ts</em> inserimos o <em>PhotosModule</em> nos <em>imports</em>
 
 <pre>import { PhotosModule } from './photos/photos.module'; </pre>
 
-<li><p>Vamos criar um array de photos cada um com sua descrição e url própria</p>
+<li><p>Vamos criar um array de photos cada um com sua descrição e url própria</p></li>
 
 vamos no arquivo <em>app.component.ts</em> e dentro da class <em>AppComponent</em> criamos o array de photos:
 
@@ -226,7 +226,8 @@ Dentro do <em>app.component.html</em>, vamos deixar somente um &lt;ap-photo&gt; 
     <li>Ao terminar rodamos o comando <pre>npm install sqlite3</pre> para instalar a versão mais recente.</li>
 
     <li>Ao fazer os procedimentos descritos acima poderá acessar rodar o comando <pre>npm start</pre> para iniciar a API. A mesma poderá ser acessada pelo endereço: <a href="http://localhost:3000/flavio/photos">http://localhost:3000/flavio/photos</a> no navegador.</li>
-    </ul>
+  </ul>
+    
 
 <h2>Http Client e Injeção de dependências</h2>
 
