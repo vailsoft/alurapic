@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { PhotoService } from './services/photo.service';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -7,27 +6,4 @@ import { PhotoService } from './services/photo.service';
   styleUrls: ['./app.component.css']
 })
 
-
-
-export class AppComponent implements OnInit {
-  photos: any;
-  erro: any;
-  user: string = 'flavio';
-
-  constructor(private photoService: PhotoService){
-    this.getter();
-  }
-
-  ngOnInit(){}
-  
-  public getter(){
-    this.photoService.listFromUser(this.user).subscribe(
-      (data: any): void => {
-        this.photos = data;
-      }, (error: any) =>{
-        this.erro = error;
-        console.log(this.erro)
-    });
-  }
-
-}
+export class AppComponent { }

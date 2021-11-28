@@ -12,6 +12,7 @@
     <li>
         ng serve --host ip - Inicia a aplicação podendo ser acessada por outro dispositivo remoto
     </li>
+
 </ul>
 
 <h2>Data Binding (ou interpolação)</h2>
@@ -23,6 +24,7 @@
         <pre>&lt;img [src] = “url” [alt] = “description”&gt;</pre>
         <span style="color: yellow;">Obs. One way data binding - quando o dado sai da fonte de dados mas não faz o caminho inverso</span>
     </li>
+
 </ul>
 
 <h2>Instalando Bootstrap</h2>
@@ -54,11 +56,14 @@
             templateUrl: 'photo.component.html',
             styleUrls: ['./photo.component.css']
         </pre> acima da criação da classe. O mesmo deverá ficar assim: 
+
 <pre>
 @Component({
+
     selector: 'ap-photo',
     templateUrl: 'photo.component.html',
     styleUrls: ['./photo.component.css']
+
 })</li></pre>
   
 Enquanto digita o decorator <em>@Component</em> se estiver usando o Visual Studio com as extensões de autocomplete do angular ele irá lhe sugerir para importá-lo automaticamente, mas se não sugerir na primeira linha insira a seguinte informação:
@@ -68,44 +73,52 @@ Enquanto digita o decorator <em>@Component</em> se estiver usando o Visual Studi
 <li>Dentro da classe vamos inserir 2 propriedades
 
 <pre>description = ""; 
+
     url = “";
+
 </pre>
 </li>
 
 No final o <em>photo.component.ts</em> ficará assim:
 
-<pre>import { Component } from "@angular/core";  
+<pre>import { Component } from "@angular/core"; 
 
 @Component({
+
     selector: 'ap-photo',
     templateUrl: 'photo.component.html'
+
 })
  
 export class PhotoComponent {
+
     description = ""; 
     url = “"; 
+
 }
 </pre>
 
 <li>
+
     Agora no photo.component.html insira a seguinte linha: 
     <pre>&lt;img class="img-thumbnail" [src]="url" [alt]="description"&gt;</pre>
+
 </li>
 
 <li><p>Para que o nosso componente seja utilizado abrimos o <em>app.component.html</em> que até agora é o único componente existente e adicionamos o nome do seletor como uma tag no caso:</p>
 
-<pre>&lt;ap-photo&gt;&lt;/ap-photo&gt; </pre>
+<pre>&lt; ap-photo&gt; &lt; /ap-photo&gt; </pre>
 
 </li>
 <li><p>Para que o <em>app.module.ts</em> reconheça o novo componente abrimos o <em>app.module.ts</em> e dentro das <em>declarations</em> vai estar somente o <em>AppComponent</em>, adicionamos uma vírgula e colocamos o nome do nosso novo componente no caso <em>PhotoComponent</em> que antes de terminar irá ser sugerido para que o mesmo seja importado se não for sugerido insira entre os imports a seguinte linha:</p>
 
 <pre>import { PhotoComponent } from './photo/photo.component'; </pre>
 
-<li><p>Agora vamos no <em>app.component.html</em> e vamos adicionar uma nova tag <pre>&lt;ap-photo&gt;&lt/ap-photo&gt; </pre> e aplicar as seguintes propriedades (<em>url e description</em>) irá ficar assim:
+<li><p>Agora vamos no <em>app.component.html</em> e vamos adicionar uma nova tag <pre>&lt; ap-photo&gt; &lt/ap-photo&gt; </pre> e aplicar as seguintes propriedades (<em>url e description</em>) irá ficar assim:
 
-<pre>&lt;ap-photo 
+<pre>&lt; ap-photo 
   url="imagem.jpg" 
-  description="Descrição da Imagem"></br>&lt;/ap-photo&gt; 
+  description="Descrição da Imagem"></br>&lt; /ap-photo&gt; 
  </pre>
 
 No caso estamos mandando os parâmetros do template para as variáveis receberem.
@@ -115,17 +128,14 @@ No caso estamos mandando os parâmetros do template para as variáveis receberem
 
 <li><p>No inicio de cada propriedade adicionamos o decorator <em>@Input()</em> para que os mesmos recebam o valor diretamente do <em>app.component.html</em> ( Template ) que os chama. No caso ficarão assim:
 
-
 <pre>export class PhotoComponent{
    @Input() description = ""
    @Input() url = ""; 
 }
 </pre>
 
-
 </p></li>
 <p>Quando tiver digitando o <em>@Input</em> ele irá sugerir para importar então importe ele irá adicionar o <em>Input</em> a seguinte linha aos imports:</p>
-
 
 <pre>import { Component, Input } from "@angular/core"; </pre>
 </ul>
@@ -141,6 +151,7 @@ No caso estamos mandando os parâmetros do template para as variáveis receberem
     <li>
         No <em>photos.module.ts</em> criamos uma classe exportável:
     </li>
+
 </br><pre>export class PhotosModule {
 
 }</pre>
@@ -153,10 +164,14 @@ ficará assim:
 <pre>
 @NgModule({
   declarations: [
+
       PhotoComponent
-  ],
+
+  ], 
   exports: [
+
       PhotoComponent
+
   ]
 })
 </pre>
@@ -168,9 +183,11 @@ import { NgModule } from '@angular/core';
 </pre>
 </li>
 <li>
+
     E também será solicitado a importação do PhotoComponent então importe automaticamente ou insira a linha:
     <pre>import { PhotoComponent } from './photo/photo.component'; 
     </pre>
+
 </li>
 O <em>photos.module.ts</em> ficará assim:
 
@@ -179,12 +196,14 @@ import { NgModule } from '@angular/core';
 import { PhotoComponent } from './photo/photo.component'; 
   
 @NgModule({
+
     declarations: [
         PhotoComponent
     ],
     exports: [
         PhotoComponent
     ]
+
 })
  
 export class PhotosModule {
@@ -192,16 +211,21 @@ export class PhotosModule {
 }
 </pre>
 <li>
+
     Em <em>app.module.ts</em> inserimos o <em>PhotosModule</em> nos <em>imports</em>  e importamos sua classe:
     <pre>import { PhotosModule } from './photos/photos.module';</pre>
+
 </li>
 <li>
+
     Vamos criar um array de photos cada um com sua descrição e url própria.
+
 </li>
 <li>vamos no arquivo <em>app.component.ts</em> e dentro da class <em>AppComponent</em> criamos o seguinte array de photos:
 
 <pre>
 photos = [
+
     {
         url: "imagem.jpg",
         description: "Descrição Imagem"
@@ -212,19 +236,23 @@ photos = [
     },    {
         url: "imagem.jpg",
         description: "Descrição Imagem"
+
     }
-];
+
+]; 
 </pre>
 </ul>
 <h2>ngFor - Utilizando diretivas</h2>
 <ul>
 <li>
+
     Dentro do <em>app.component.html</em>, vamos deixar somente um &lt;ap-photo&gt; e inserir um *ngFor para que a cada photo do array de photos sejam buscadas as informaçoes necessárias para que cada item seja renderizado.
     <pre>
     &lt;ap-photo *ngFor="let photo of photos" 
         [url]="photo.url" 
         [description]="photo.description"&gt;
     &lt;/ap-photo&gt;
+
 </pre>
 </ul>
 <h2>Integrando a nossa aplicação com uma API</h2>
@@ -247,7 +275,9 @@ photos = [
     <li>
         Ao fazer os procedimentos descritos acima poderá acessar rodar o comando <pre>npm start</pre> para iniciar a API. A mesma poderá ser acessada pelo endereço: <a href="http://localhost:3000/flavio/photos">http://localhost:3000/flavio/photos</a> no navegador.
     </li>
+
 </ul>
+
     
 
 <h2>Http Client e Injeção de dependências</h2>
@@ -261,7 +291,9 @@ photos = [
         <pre>import { HttpClientModule } from '@angular/common/http';</pre>
     </li>
 </ul>
+
     <h2>Trabalhando com Services</h2>
+
 <ul>
     <li>
         Agora vamos criar um serviço, abra o terminal e digite o comando: </p>
@@ -280,7 +312,7 @@ photos = [
     </li>
     <li>
         Dentro da função vamos escrever:
-        <pre>return this.http.get(`${API}${userName}/photos`);</pre>
+        <pre>return this.http.get( `${API}${userName}/photos` );</pre>
     </li>
     <li>
         Abaixo os imports criamos   uma constante com o endereço de nossa API:
@@ -293,15 +325,16 @@ photos = [
         Verifique se o 
         <pre>import { Injectable } from '@angular/core';</pre> está entre os imports.
     </li>
+
 </ul>
 <ul>
 
 O photo.service.ts ficar assim: </p>
 <pre>
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http'; 
+import { Injectable } from '@angular/core'; 
 
-const API = 'http://localhost:3000/';
+const API = 'http://localhost:3000/'; 
 
 @Injectable({ providedIn: 'root' })
 
@@ -312,29 +345,33 @@ export class PhotoService {
     }
 
     listFromUser(userName: string){
-        return this.http.get(`${API}${userName}/photos`);
+        return this.http.get( `${API}${userName}/photos` );
     }  
+
 }
 </pre>
 </p>
 
 <li>No <em>app.component.ts</em> dentro da classe vamos criar 3 Variáveis: 
-<pre>photos: any;
-erro: any;
+<pre>photos: any; 
+erro: any; 
 user: string = 'flavio'
 </pre>
 
 </li>
 <li> Abaixo das variáveis criamos um <em>constructor</em> que vai utilizar um parâmetro do tipo <em>PhotoService</em> que será inserido nos imports:
-<pre>import { PhotoService } from './services/photo.service';</pre> e inserimos a função getter para que seja chamada no caso:
+<pre>import { PhotoService } from './services/photo.service'; </pre> e inserimos a função getter para que seja chamada no caso:
 
 <pre>constructor(private photoService: PhotoService){
+
     this.getter();
+
 }</pre>
 </li>
 
 <li>Criamos também uma função <em>getter()</em>, a mesma será assim:
 <pre>public getter(){
+
     this.photoService.listFromUser(this.user).subscribe(
         (data: any): void => {
             this.photos = data;
@@ -344,34 +381,38 @@ user: string = 'flavio'
         });
     }</pre>
 
-
 <li>abaixo do construtor se não tiver a função <em>ngOnInit</em> chamamos ela e a mesma vai importar de <em>@angular/core</em> o import ficará assim: 
-<pre>import { Component, OnInit } from '@angular/core';</pre>
+<pre>import { Component, OnInit } from '@angular/core'; </pre>
+<li> Devemos implementar o OnInit na classe utilizando o implements depois do nome da classe:
+<pre>export class AppComponent implements OnInit</pre></li>
 
 <p>O app.component.ts ficará assim:</p>
 
 <pre>
-import { Component, OnInit } from '@angular/core';
-import { PhotoService } from './services/photo.service';
+import { Component, OnInit } from '@angular/core'; 
+import { PhotoService } from './services/photo.service'; 
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
+  selector: 'app-root', 
+  templateUrl: './app.component.html', 
   styleUrls: ['./app.component.css']
 })
 
 export class AppComponent implements OnInit {
-  photos: any;
-  erro: any;
-  user: string = 'flavio';
+  photos: any; 
+  erro: any; 
+  user: string = 'flavio'; 
 
   constructor(private photoService: PhotoService){
+
     this.getter();
+
   }
 
   ngOnInit(){}
   
   public getter(){
+
     this.photoService.listFromUser(this.user).subscribe(
       (data: any): void => {
         this.photos = data;
@@ -379,20 +420,133 @@ export class AppComponent implements OnInit {
         this.erro = error;
         console.log(this.erro)
     });
+
   }
 
 }
 </pre>
 
-
 </li>
 
-<li>Para realizar um teste sem mostrar erros vamos comentar todo o &lt;ap-photo&gt; dentro de <em>app.component.html e colocamos um <em>ngFor</em>
+<li>Para realizar um teste sem mostrar erros vamos comentar todo o &lt; ap-photo&gt; dentro de <em>app.component.html</em> e colocamos um <em>ngFor</em>
 
 <div *ngFor="let i of photos">
+
     <img [attr.src]="i.url" class="img-thumbnail"> 
+
  </div>
 
  Se aparecer as imagens deu tudo certo.
 
+<li>
 
+    Vamos fazer uma pequena alteração no <em>app.components.ts</em>, vamos deixar o constructor somente para injeção de dependência e o conteúdo da função getter() vamos colocar dentro de <em>ngOnInit</em> dessa forma:
+    <pre>
+    constructor(private photoService: PhotoService){ }
+    ngOnInit(): void{
+    this.photoService.listFromUser(this.user).subscribe(
+      (data: any): void => {
+        this.photos = data;
+      }, (error: any) =>{
+        this.erro = error;
+        console.log(this.erro)
+        });
+    }</pre>
+
+</li>
+
+<li>
+Em app.module.ts removemos o HttpClientModule da lista dos imports e do array de imports, deixando somente o PhotosModule
+</li>
+
+<li>
+Deve ser inserido o HttpClientModule dentro dos imports e do array de imports do photos.module.ts
+</li>
+
+<li>Dentro da pasta photo vamos inserir um arquivo e renomear como photo.ts que será uma interface, dentro do seu conteúdo deverá estar assim: 
+<pre>
+export interface Photo{
+   id: number; 
+   postDate: Date; 
+   url: string; 
+   description: string; 
+   allowComments: boolean; 
+   likes: number; 
+   comments: number; 
+   userId: number; 
+}
+</pre>
+</li>
+<li>
+    Em photo.service.ts vamos importar a interface Photo:
+    <pre>
+    import { Photo } from '../photos/photo/photo'; 
+    </pre>
+    E inserir o tipo após o get do retorno da função listFromUser:
+    <pre>
+    listFromUser(userName: string){
+        return this.http.get<Photo[]>( `${API}${userName}/photos` ); 
+
+    }
+
+    </pre>
+</li>
+
+<li>Vamos criar um componente photo-list, mas dessa vez de forma automática usando o comando ng g c photos/photo-list
+</li>
+
+<li>Vamos agora passar tudo do app component ts para o photo-list.component.ts de forma que o app.component.ts fique assim: 
+
+<pre>
+import { Component } from '@angular/core'; 
+
+@Component({
+  selector: 'app-root', 
+  templateUrl: './app.component.html', 
+  styleUrls: ['./app.component.css']
+})
+
+export class AppComponent { }
+
+</pre>
+
+e o photo.component.ts fique assim:
+
+<pre>
+import { Component, OnInit } from '@angular/core'; 
+import { PhotoService } from 'src/app/services/photo.service'; 
+
+@Component({
+  selector: 'app-photo-list', 
+  templateUrl: './photo-list.component.html', 
+  styleUrls: ['./photo-list.component.css']
+})
+
+export class PhotoListComponent implements OnInit {
+
+  photos: any; 
+  erro: any; 
+  user: string = 'flavio'; 
+
+  constructor(private photoService: PhotoService){ }
+
+  ngOnInit(): void{
+    this.photoService.listFromUser(this.user).subscribe(
+      (data: any): void => {
+        this.photos = data;
+      }, (error: any) =>{
+        this.erro = error;
+        console.log(this.erro)
+    });
+
+  }
+}
+
+</pre>
+</li>
+
+<li>
+    Removemos também o HttpClientModule dentro do app.module.ts (Imports e do array de imports)
+</li>
+
+</ul>
